@@ -1,0 +1,35 @@
+Tous les utilisateurs : 
+SELECT * FROM users
+
+Utilisateurs par nom de famille : SELECT * FROM users ORDER BY last_name
+
+Dernier utilisateur inscrit : SELECT * FROM users ORDER BY registration_date DESC LIMIT 1
+
+Utilisateurs fêtant leur anniversaire : SELECT * FROM users WHERE birthdate LIKE '%-07-%'
+
+Nombre total d'utilisateus : SELECT COUNT(*) FROM users
+
+Utilisateurs et villes : 
+    SELECT users.last_name, users.first_name, addresses.city FROM users JOIN addresses ON users.address_id = addresses.id
+
+7. Adresses sans numéro : 
+    SELECT users.last_name, users.first_name, addresses.number 
+    FROM users JOIN addresses 
+    ON users.address_id = addresses.id
+    WHERE addresses.number IS NULL
+    
+8. Produits < 1000€ : SELECT * FROM products WHERE price > 1000.00
+
+9.Produits et photos : 
+    SELECT products.name, pictures.url 
+    FROM products JOIN pictures
+    ON products.id = pictures.product_id
+    
+10. Produits catégorie Voyage : 
+    SELECT products.name, categories.title 
+    FROM products 
+    JOIN products_categories ON products.id = products_categories.product_id
+    JOIN categories ON products_categories.category_id = categories.id
+    WHERE categories.title = "Voyage"
+    
+11. Utilisateurs avec > 10 commandes :
